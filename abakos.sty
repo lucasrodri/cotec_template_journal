@@ -145,42 +145,49 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 
 %%%%%%%%%%%%%%%
 
-\newcommand{\autoresLista}{} % inicia lista vazia
-
-% Comando para adicionar autores (nome, funcao, afiliacao, email, orcid url)
-\newcommand{\autor}[5]{%
-	\gappto{\autoresLista}{#1/#2/#3/#4/#5,}
+\newcommand{\afiliacao}[2]{% id, texto
+	\expandafter\gdef\csname afil#1\endcsname{#2}
 }
 
-\newcounter{numautor}
-\newcommand{\renderAutores}{
+\newcommand{\autoresLista}{} % inicializa
+\newcommand{\autor}[3]{% nome, id_afil, orcid
+	\gappto{\autoresLista}{#1/#2/#3,}
+}
+
+\newcommand{\emailCorrespondencia}[1]{%
+	\gdef\emailAutorResponsavel{#1}
+}
+
+\newcommand{\renderAutores}{%
 	\begingroup
 	\renewcommand{\arraystretch}{1.2}
+	\newcounter{numautor}
+	\newcommand{\virgula}{}%
 	
-	% Primeira linha: nomes com sobrescrito
+	% Primeira linha - nomes com sobrescrito e ORCID
 	\foreach \autorEntry in \autoresLista {%
 		\ifx\autorEntry\empty\else
-		\stepcounter{numautor}%
 		\StrBefore{\autorEntry}{/}[\nome]%
-		\textbf{\nome}$^{\arabic{numautor}}$, %
+		\StrBehind{\autorEntry}{/}[\restoA]%
+		\StrBefore{\restoA}{/}[\idafil]%
+		\StrBehind{\restoA}{/}[\orcid]%
+		
+		\textbf{\nome}$^{\idafil}$\ \href{\orcid}{\iconOrcid}\par
 		\fi
 	}
 	
-	\setcounter{numautor}{0}
+	\vspace{1em}
 	
-	% Segunda parte: afiliação, email, ORCID
+	% Afiliações
 	\foreach \autorEntry in \autoresLista {%
 		\ifx\autorEntry\empty\else
-		\stepcounter{numautor}%
 		\StrBefore{\autorEntry}{/}[\nome]%
 		\StrBehind{\autorEntry}{/}[\restoA]%
-		\StrBefore{\restoA}{/}[\funcao]%
-		\StrBehind{\restoA}{/}[\restoB]%
-		\StrBefore{\restoB}{/}[\afiliacao]%
-		\StrBehind{\restoB}{/}[\restoC]%
-		\StrBefore{\restoC}{/}[\email]%
-		\StrBehind{\restoC}{/}[\orcid]%
-		$^{\arabic{numautor}}$ \afiliacao, \email, ORCID~\href{\orcid}{\iconOrcid}\\%
+		\StrBefore{\restoA}{/}[\idafil]%
+		\expandafter\ifx\csname usedafil\idafil\endcsname\relax
+		$^{\idafil}$ \csname afil\idafil\endcsname\par
+		\expandafter\gdef\csname usedafil\idafil\endcsname{1}%
+		\fi
 		\fi
 	}
 	\endgroup
@@ -222,14 +229,43 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 				{\Large\bfseries \monog}\\[0.5em]
 				
 				% Título em outros idiomas
-				\monogIngles\\[0.5em]
-				\monogEspanhol\\[2em]
-				
-				\vspace{1em}
+				\ifdefined\monogIngles
+					\monogIngles\\[0.5em]
+				\fi
+				\ifdefined\monogEspanhol
+					\monogEspanhol\\[1em]
+				\fi
+				\vspace{0.5em}
 				\renderAutores
+				\begin{flushright}
+					\footnotesize
+					\textbf{Correspondência para:} \emailAutorResponsavel
+				\end{flushright}
 				
+				\ifdefined\resumoEN
+					\vspace{2em}
+					\resumoPT\\[0.3em]
+					\noindent Palavras-chave: \keywordsPT
+				\fi
 				
-				Textoooo
+				\ifdefined\resumoEN
+					\vspace{2em}
+					\resumoEN\\[0.3em]
+					\noindent Keywords: \keywordsEN
+				\fi
+				
+				\ifdefined\resumoES
+					\vspace{2em}
+					\resumoES\\[0.3em]
+					\noindent Palabras clave: \keywordsES
+				\fi
+				
+				\vfill
+				\begin{flushleft}
+					\scriptsize
+					\textbf{Como citar:} \comoCitar
+				\end{flushleft}
+				
 			\end{tcolorbox}		
 	}
 \end{minipage}

@@ -38,11 +38,6 @@
 \newcommand{\textoFinanciamento}{Texto texto texto texto texto texto texto texto texto texto.}
 
 
-%\setcounter{page}{80} %iniciar contador de pagina de valor especificado, quando o artigo for alocado a uma edição
-\newcommand{\monog}{Título do Artigo em Português}
-\newcommand{\monogIngles}{Título do artigo em Inglês}
-\newcommand{\monogEspanhol}{Título do artigo em Espanhol}
-\newcommand{\origem}{Brasil}
 \newcommand{\editorialCapa}{\textbf{Revista InovaEducaTech\\Ibiá - MG\\v1 n1 p. 00-00\\Jul/Dez\\e-ISSN: 3085-6558}}
 \newcommand{\editorial}{\textbf{InovaEducaTech}, Ibiá, v. 1, n. 1, p. 00-00, Jul. 2025 - ISSN: 3085-6585 DOI: 10.63103/xxxxxxxx}  % p. xx-xx – páginas inicial-final do artigo
 % \newcommand{\lcc}{\scriptsize{Licença Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported}}
@@ -53,28 +48,50 @@
 %%Lembre-se de submeter a versão não identificada!
 %%%%%%
 
+% Define afiliações
+\afiliacao{1}{Instituto X, Departamento Y, Universidade Z}
+\afiliacao{2}{Laboratório ABC, Universidade DEF}
 
-\autor{Nome do Autor 1}{}{Afiliação do autor 1}{email1@email.com}{https://orcid.org/0000-0000-0000-0001}
-\autor{Nome do Autor 2}{}{Afiliação do autor 2}{email2@email.com}{https://orcid.org/0000-0000-0000-0002}
-\autor{Nome do Autor 3}{}{Afiliação do autor 3}{email3@email.com}{https://orcid.org/0000-0000-0000-0003}
+% Define autores
+\autor{Nome do Autor 1}{1}{https://orcid.org/0000-0000-0000-0001}
+\autor{Nome do Autor 2}{2}{https://orcid.org/0000-0000-0000-0002}
+\autor{Nome do Autor 3}{1}{https://orcid.org/0000-0000-0000-0003}
+
+% E-mail de contato
+\emailCorrespondencia{email\_responsavel@mail.com}
 
 
-%\newcommand{\AutorA}{Nome do Primeiro Autor}
-%\newcommand{\funcaoA}{}
-%\newcommand{\cursA}{Afiliação do autor 1}
-%\newcommand{\emailA}{autor1@email.edu.br}
-%
-%\newcommand{\AutorB}{Nome do Segundo Autor}
-%\newcommand{\funcaoB}{}
-%\newcommand{\cursB}{Afiliação do autor 2}
-%\newcommand{\emailB}{autor2@email.edu.br}
+% ======= PORTUGUÊS =======
+\newcommand{\monog}{Título do Artigo em Português}
 
-% \newcommand{\AutorC}{Terceiro Autor}
-% \newcommand{\funcaoC}{}
-% \newcommand{\emailC}{autor3@email.edu.b}
-% \newcommand{\cursC}{Afiliação do autor 3}
+\newcommand{\resumoPT}{
+	\noindent\textbf{Resumo:} Por favor, forneça um resumo com no máximo 250 palavras. Seu resumo deve explicar as principais contribuições do seu artigo e não deve conter nenhum material que não esteja incluído no texto principal.
+}
 
-\newcommand{\keyword}[1]{\textsf{#1}}
+\newcommand{\keywordsPT}{termo1; termo2; termo3; termo4; termo5.}
+
+% ======= INGLÊS =======
+\newcommand{\monogIngles}{Título do artigo em Inglês}
+
+\newcommand{\resumoEN}{
+	\noindent\textbf{Abstract:} Please provide an abstract with a maximum of 250 words. It should explain the main contributions of your article and must not contain any material not included in the main text.
+}
+
+\newcommand{\keywordsEN}{term1; term2; term3; term4; term5.}
+
+% ======= ESPANHOL =======
+\newcommand{\monogEspanhol}{Título do artigo em Espanhol}
+
+\newcommand{\resumoES}{
+	\noindent\textbf{Resumen:} Por favor, proporcione un resumen de un máximo de 250 palabras. Debe explicar las principales contribuciones de su artículo y no debe contener ningún material que no esté incluido en el texto principal.
+}
+
+\newcommand{\keywordsES}{término1; término2; término3; término4; término5.}
+
+% Como citar
+\newcommand{\comoCitar}{%
+	SOBRENOME, Nome; SOBRENOME, Nome; SOBRENOME, Nome. Título: subtítulo. \textit{Nome da Revista}, Cidade, v. 23, p. x--xx, 2025. DOI: https://doi.org/10.0000/0000-0000-0000.
+}
 
 \begin{document}
 
@@ -83,45 +100,6 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \revistaheader
-\newpage
-
-%\ccfooter
-%\Large{\monog \symbolfootnote[1]{
-%		Submetido em DD/MM/AAAA - Aceito em DD/MM/AAAA} \\}
-%\normalsize{\monogES}
-
-
-
-%% Adicionando o CC abaixo da linha de submissão
-%\vspace{0.3cm}
-%\begin{flushleft}
-%	\includegraphics[height=0.8cm]{figuras/cc.png} % ajuste da altura
-%\end{flushleft}
-
-%\begin{flushright}
-%\singlespacing 
-%\normalsize{\AutorA \footnote{\funcaoA \cursA, \origem -- \emailA }} \\
-% \normalsize{\AutorB \footnote{\funcaoB \cursB, \origem -- \emailB }} \\
-%% \normalsize{\AutorC \footnote{\funcaoC, E-mail:\emailC \\ \cursC, \origem. }} \\
-%% \normalsize{\AutorD \footnote{\funcaoD \\ Pais de origem: \origemD. E-mail: \emailD}} \\
-%\end{flushright}
-%\thispagestyle{empty}
-
-\begin{abstract}
-\noindent
-Apresentação sucinta de pontos relevantes do artigo em um parágrafo único. Use letra tamanho 10pt com espaço de 1,5 entre as linhas. O resumo deve conter o objeto de estudo, objetivo, metodologia, resultados e considerações finais. Deve-se usar o verbo na voz ativa e na terceira pessoa do singular.  O resumo não deve conter nomes de autores e referências. Logo abaixo do resumo, deve-se indicar as palavras-chave (de três a cinco) que representam o conteúdo do estudo. Após cada palavra-chave utilizar um ponto final. O resumo deve ter de 100 (cem) a 250 (duzentos e cinquenta) palavras.
-\\\textbf{\keyword{Palavras-chave: }} Template. \LaTeX. Abakós. Periódicos.
-\end{abstract}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage 
-\selectlanguage{english}
-\begin{abstract}
-\noindent
-Brief presentation of the relevant points of the article in a single paragraph. Use letter size 10pt with 1.5 spacing between lines. The abstract should summarize the object of the study, objective, methodology, results and final considerations. Use the active voice and the verb in the first person. Do not include names of authors and references. Just below the abstract, you should indicate the keywords (from three to five) that best represent the content of the study. Each keyword is followed by a period. The abstract should have from 100 (one hundred) to 250 (two hundred and fifty)  words.
-\\\textbf{\keyword{Keywords: }} Template. \LaTeX. Abakós. Periodics.
-\end{abstract}
-
 \newpage
 
 \selectlanguage{brazilian}
