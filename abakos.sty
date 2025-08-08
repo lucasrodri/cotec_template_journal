@@ -150,8 +150,8 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 }
 
 \newcommand{\autoresLista}{} % inicializa
-\newcommand{\autor}[3]{% nome, id_afil, orcid
-	\gappto{\autoresLista}{#1/#2/#3,}
+\newcommand{\autor}[4]{% nome, sobrenome, id_afil, orcid
+	\gappto{\autoresLista}{#1/#2/#3/#4,}
 }
 
 \newcommand{\emailCorrespondencia}[1]{%
@@ -169,10 +169,12 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 		\ifx\autorEntry\empty\else
 		\StrBefore{\autorEntry}{/}[\nome]%
 		\StrBehind{\autorEntry}{/}[\restoA]%
-		\StrBefore{\restoA}{/}[\idafil]%
-		\StrBehind{\restoA}{/}[\orcid]%
+		\StrBefore{\restoA}{/}[\sobrenome]%
+		\StrBehind{\restoA}{/}[\restoB]%
+		\StrBefore{\restoB}{/}[\idafil]%
+		\StrBehind{\restoB}{/}[\orcid]%
 		
-		\textbf{\nome}$^{\idafil}$\ \href{\orcid}{\iconOrcid}\par
+		\textbf{\nome~\sobrenome}$^{\idafil}$\ \href{\orcid}{\iconOrcid}\par
 		\fi
 	}
 	
@@ -183,7 +185,9 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 		\ifx\autorEntry\empty\else
 		\StrBefore{\autorEntry}{/}[\nome]%
 		\StrBehind{\autorEntry}{/}[\restoA]%
-		\StrBefore{\restoA}{/}[\idafil]%
+		\StrBefore{\restoA}{/}[\sobrenome]%
+		\StrBehind{\restoA}{/}[\restoB]%
+		\StrBefore{\restoB}{/}[\idafil]%
 		\expandafter\ifx\csname usedafil\idafil\endcsname\relax
 		$^{\idafil}$ \csname afil\idafil\endcsname\par
 		\expandafter\gdef\csname usedafil\idafil\endcsname{1}%
@@ -192,6 +196,34 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 	}
 	\endgroup
 }
+
+%%%%%%%%%%%%%%%
+
+\renewcommand{\autoresLista}{} % inicializa
+
+% nome, sobrenome, id_afil, orcid
+\renewcommand{\autor}[4]{%
+	\gappto{\autoresLista}{#1/#2/#3/#4,}%
+}
+
+% Geração da parte do "Como citar"
+\newcommand{\renderComoCitarAutores}{%
+	\begingroup
+	\def\autoresComoCitar{}%
+	\foreach \autorEntry in \autoresLista {%
+		\ifx\autorEntry\empty\else
+		\StrBefore{\autorEntry}{/}[\nome]%
+		\StrBehind{\autorEntry}{/}[\restoA]%
+		\StrBefore{\restoA}{/}[\sobrenome]%
+		\xdef\autoresComoCitar{\autoresComoCitar \MakeUppercase{\sobrenome}, \nome; }%
+		\fi
+	}%
+	\StrGobbleRight{\autoresComoCitar}{2}[\autoresFinal]%
+	\autoresFinal.%
+	\endgroup
+}
+
+
 
 %%%%%%%%%%%%%%%
 
@@ -263,8 +295,10 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 				\vfill
 				\begin{flushleft}
 					\scriptsize
-					\textbf{Como citar:} \comoCitar
+					\textbf{Como citar:} \renderComoCitarAutores~\textbf{\monog.}~\comoCitar
 				\end{flushleft}
+				
+				
 				
 			\end{tcolorbox}		
 	}
@@ -439,54 +473,99 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 %Desenhar figuras geometricas
 \usepackage{tikz}
 
-%  Formata tipo e tamanho da fonte das subseções.
+%%%%%%%%%%%%%%%%%%%%
 
-\fancyhf{}
+% Sobrenome do primeiro autor
+\newcommand{\primeiroAutorSobrenome}{%
+	\StrCount{\autoresLista}{,}[\numAutores]
+	\StrBefore{\autoresLista}{,}[\autorPrimeiro]%
+	\StrBehind{\autorPrimeiro}{/}[\resto]%
+	\StrBefore{\resto}{/}[\sobrenome]%
+	\MakeUppercase{\sobrenome}%
+}
+
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+%CABEÇALHO
 
 %para margem do cabeçalho ficar do tamanho da margem do texto
 \fancyheadoffset{0cm}
- 
-\lhead{\footnotesize{\monog}} 
 
-\setlength\parindent{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt} % remove linha padrão do cabeçalho
 
-%\renewcommand{\footrulewidth}{0.5pt}
-%\rfoot [\footnotesize{\editorial}]{\thepage}
-%\lfoot [\thepage]{\footnotesize{\editorial}}
+\setlength{\topmargin}{-1in}        % Remove margem padrão
+\setlength{\headsep}{1.5cm} % ou 1.5cm, ajuste conforme desejar
 
-\renewcommand{\footrulewidth}{0pt} % Remove linha do rodapé
-%\fancyhf{} % Limpa cabeçalhos e rodapés
-
-\fancyfoot[C]{%
-	\noindent
+% Cabeçalho com barra azul personalizada
+\fancyhead[C]{%
 	\begin{tcolorbox}[
 		colback=headerblue,
 		colframe=headerblue,
 		boxrule=0pt,
 		arc=0pt,
-		left=15pt,
-		right=15pt,
-		outer arc=0pt,
+		left=10pt,
+		right=10pt,
+		top=2pt,
+		bottom=2pt,
 		width=\paperwidth,
-		height=1.0cm,
-		valign=center,  % centraliza verticalmente
-		%halign=center,  % centraliza horizontalmente
-		enlarge left by=-43pt,
-		%enlarge right by=-\oddsidemargin,
-		enlarge top by=-13pt,
-		%enlarge bottom by=0pt
+		enlarge left by=-1in,
+		enlarge right by=-1in,
+		enlarge top by=-0.4cm, 
+		height=1cm,
+		valign=center,
 		]
-		\noindent
-		\begin{minipage}[t]{0.8\textwidth}
-			\hspace{0.9cm}%
-			\textcolor{white}{\footnotesize{\editorial}}
-		\end{minipage}%
-		\begin{minipage}[t]{0.15\textwidth}
-			\raggedleft
-			\textcolor{white}{\thepage}
-		\end{minipage}
-		
-		%\footnotesize{\editorial}]{\thepage}
-		%\lfoot [\thepage]{\footnotesize{\editorial}
+		\hspace{1em}%
+		\textcolor{white}{\footnotesize \monog{} – \primeiroAutorSobrenome{}%
+			\ifnum\numAutores>1 \textit{ et al.}\fi}
 	\end{tcolorbox}
 }
+
+%%%%%%%%%%%%%%%%%%%%
+ 
+%\lhead{\footnotesize{\monog}} 
+
+%\setlength\parindent{0pt}
+
+\renewcommand{\footrulewidth}{0.5pt}
+\rfoot [\footnotesize{\editorial}]{\thepage}
+\lfoot [\thepage]{\footnotesize{\editorial}}
+
+%%\renewcommand{\footrulewidth}{0pt} % Remove linha do rodapé
+%\fancyhf{} % Limpa cabeçalhos e rodapés
+
+%\fancyfoot[C]{%
+%	\noindent
+%	\begin{tcolorbox}[
+%		colback=headerblue,
+%		colframe=headerblue,
+%		boxrule=0pt,
+%		arc=0pt,
+%		left=15pt,
+%		right=15pt,
+%		outer arc=0pt,
+%		width=\paperwidth,
+%		height=1.0cm,
+%		valign=center,  % centraliza verticalmente
+%		%halign=center,  % centraliza horizontalmente
+%		enlarge left by=-43pt,
+%		%enlarge right by=-\oddsidemargin,
+%		enlarge top by=-13pt,
+%		%enlarge bottom by=0pt
+%		]
+%		\noindent
+%		\begin{minipage}[t]{0.8\textwidth}
+%			\hspace{0.9cm}%
+%			\textcolor{white}{\footnotesize{\editorial}}
+%		\end{minipage}%
+%		\begin{minipage}[t]{0.15\textwidth}
+%			\raggedleft
+%			\textcolor{white}{\thepage}
+%		\end{minipage}
+%		
+%		%\footnotesize{\editorial}]{\thepage}
+%		%\lfoot [\thepage]{\footnotesize{\editorial}
+%	\end{tcolorbox}
+%}

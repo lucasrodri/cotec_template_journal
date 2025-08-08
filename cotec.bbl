@@ -1,0 +1,97 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem[Arroyo 2013]{arroyo}
+\abntrefinfo{Arroyo}{ARROYO}{2013}
+{ARROYO, M.~G. \textbf{Ofício de mestre}: Imagens e auto-imagens. 15. ed.
+  Petrópolis: Vozes, 2013.}
+
+\bibitem[Bordieu 2011]{bordieu}
+\abntrefinfo{Bordieu}{BORDIEU}{2011}
+{BORDIEU, P. Espaço social e espaço simbólico. In:  BORDIEU, P. (Org.).
+  \textbf{Razões práticas}: sobre a teoria da ação. 11. ed. Campinas:
+  Papirus, 2011. cap.~1, p. 13--27.}
+
+\bibitem[Dickman 1996]{exemplotese}
+\abntrefinfo{Dickman}{DICKMAN}{1996}
+{DICKMAN, A.~G.
+\textbf{Transições de Fases de Não-equilíbrio em Sistemas de Partículas
+  Interagentes}.
+1996. Tese (Doutorado) --- Universidade Federal de Minas Gerais, Belo
+  Horizonte, 1996.}
+
+\bibitem[Ferreira e Dickman 2015]{ferreira}
+\abntrefinfo{Ferreira e Dickman}{FERREIRA; DICKMAN}{2015}
+{FERREIRA, A.~C.; DICKMAN, A.~G. História oral: um método para investigar o
+  ensino de física para estudantes cegos.
+\textbf{Revista Brasileira de Educa\c{c}\~{a}o Especial}, v.~21, n.~2, p.
+  245--258, 2015.}
+
+\bibitem[Kogut 2015]{kogut}
+\abntrefinfo{Kogut}{KOGUT}{2015}
+{KOGUT, M.~C. A formação docente: Os saberes e a identidade do professor. In:
+   CONGRESSO NACIONAL DE EDUCAÇÃO, 12., 2015, Curitiba. \textbf{Anais [...]}.
+  Curitiba: PUCPR, 2015.}
+
+\bibitem[Pertence 2021]{exemplodiss}
+\abntrefinfo{Pertence}{PERTENCE}{2021}
+{PERTENCE, M. L.~B.
+\textbf{Ensino de física para estudantes cegos}: Oficina sobre criação e
+  adaptação de materiais didáticos para professores e licenciandos.
+2021. Disserta\c{c}\~{a}o (Mestrado) --- Pontifícia Universidade Católica de
+  Minas Gerais, Belo Horizonte, 2021.}
+
+\bibitem[Ponciano \textit{et al.} 2017]{ponciano2017designing}
+\abntrefinfo{Ponciano \textit{et al.}}{PONCIANO \textit{et al.}}{2017}
+{PONCIANO, L. \textit{et al.} Designing for pragmatists and fundamentalists:
+  Privacy concerns and attitudes on the internet of things. In:  BRAZILIAN
+  SYMPOSIUM ON HUMAN FACTORS IN COMPUTING SYSTEMS, 16., 2017, Joinville.
+  \textbf{Anais [...]}. New York: Association for Computing Machinery, 2017. p.
+  1--10.}
+
+\bibitem[Ponciano e Brasileiro 2018]{ponciano2018agreement}
+\abntrefinfo{Ponciano e Brasileiro}{PONCIANO; BRASILEIRO}{2018}
+{PONCIANO, L.; BRASILEIRO, F. Agreement-based credibility assessment and task
+  replication in human computation systems.
+\textbf{Future Generation Computer Systems}, Elsevier, v.~87, p. 159--170,
+  2018.}
+
+\bibitem[Pontif\'icia Universidade Cat\'olica de Minas Gerais
+  2019]{manualpuccit}
+\abntrefinfo{Pontif\'icia Universidade Cat\'olica de Minas Gerais}{PONTIF\'ICIA
+  UNIVERSIDADE CAT\'OLICA DE MINAS GERAIS}{2019a}
+{PONTIF\'ICIA UNIVERSIDADE CAT\'OLICA DE MINAS GERAIS. \textbf{Citar e
+  referenciar}: orientações para aplicabilidade das normas da associação
+  brasileira de normas técnicas ({ABNT}) – atualizada em 14-11-2018. 3. ed.
+  Belo Horizonte: PUC Minas, 2019. Disponível em:
+  <www.pucminas.br/biblioteca>. Acesso em: 15 de abr. 2021.}
+
+\bibitem[Pontif\'icia Universidade Cat\'olica de Minas Gerais
+  2019]{manualpucref}
+\abntrefinfo{Pontif\'icia Universidade Cat\'olica de Minas Gerais}{PONTIF\'ICIA
+  UNIVERSIDADE CAT\'OLICA DE MINAS GERAIS}{2019b}
+{PONTIF\'ICIA UNIVERSIDADE CAT\'OLICA DE MINAS GERAIS. \textbf{Elaboração de
+  referências}: Associação brasileira de normas técnicas 6023 –
+  atualizada em 14-11-2018. 3. ed. Belo Horizonte: PUC Minas, 2019. Disponível
+  em: <www.pucminas.br/biblioteca>. Acesso em: 15 de abr. 2021.}
+
+\bibitem[Pontif\'icia Universidade Cat\'olica de Minas Gerais
+  2019]{manualpucartigo}
+\abntrefinfo{Pontif\'icia Universidade Cat\'olica de Minas Gerais}{PONTIF\'ICIA
+  UNIVERSIDADE CAT\'OLICA DE MINAS GERAIS}{2019c}
+{PONTIF\'ICIA UNIVERSIDADE CAT\'OLICA DE MINAS GERAIS. \textbf{Orientações
+  para elaboração de artigo científico}: {NBR:6022:2018-Associação
+  Brasileira de Normas Técnicas (ABNT)}. Belo Horizonte: PUC Minas, 2019.
+  Disponível em: <www.pucminas.br/biblioteca>. Acesso em: 15 de abr. 2021.}
+
+\bibitem[Swokowski, Flores e Moreno 1994]{swokowski1994}
+\abntrefinfo{Swokowski, Flores e Moreno}{SWOKOWSKI; FLORES; MORENO}{1994}
+{SWOKOWSKI, E.~W.; FLORES, V. R. L.~F.; MORENO, M. Q. \textbf{Cálculo de
+  geometria analítica}. Tradução: Alfredo Alves de Faria. Revisão técnica:
+  Antonio Pertence Júnior. 2. ed. São Paulo: Makron Books do Brasil, 1994.}
+
+\end{thebibliography}
