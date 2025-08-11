@@ -15,7 +15,10 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 
 % \usepackage{memhfixc}  % Para mudança de tamanho de fontes 
 % Merge em duas células (linhas diferentes)
+\usepackage{eso-pic} % para sobrepor conteúdo a cada página
 \usepackage{multirow}
+
+\usepackage{paracol} % colunas independentes que quebram entre páginas
 
 %desenhar cabeçalho e rodapé
 \usepackage{fancyhdr}
@@ -30,10 +33,10 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 %  \usepackage{selinput}
 % 
 %   \SelectInputMappings{     % Semi-automatic input selection
-%     atilde={ã},             % by a list of selected glyphs
-%     aacute={á},             % see: http://partners.adobe.com/public/developer/en/opentype/glyphlist.txt
-%     ccedilla={ç}
-%   }
+	%     atilde={ã},             % by a list of selected glyphs
+	%     aacute={á},             % see: http://partners.adobe.com/public/developer/en/opentype/glyphlist.txt
+	%     ccedilla={ç}
+	%   }
 % \usepackage{babel}
 % \usepackage{txfonts}      % Font in Times New Roman style
 \usepackage[onehalfspacing]{setspace}
@@ -47,7 +50,7 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 
 %\usepackage[alf]{abntex2cite}
 % \usepackage{cite}
- %\usepackage{abnt-alf}
+%\usepackage{abnt-alf}
 \usepackage{setspace}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -67,18 +70,18 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 
 % Margens 
 % \usepackage[inner=30mm,outer=20mm,top=30mm,bottom=20mm]{geometry}
- \usepackage{geometry}
- \geometry{tmargin=20mm,bmargin=20mm,lmargin=15mm,rmargin=15mm}
- 
- % -- Legenda das Figuras --
+\usepackage{geometry}
+\geometry{tmargin=20mm,bmargin=20mm,lmargin=15mm,rmargin=15mm}
+
+% -- Legenda das Figuras --
 \usepackage{caption}
 \captionsetup[figure]{labelsep=endash,labelfont={bf},textfont=bf} 
 \captionsetup[table]{labelsep=endash,labelfont={bf},textfont=bf}
- 
+
 
 %%%%%%Utilizar simbolos como nota de rodapé [* 
- \long\def\symbolfootnote[#1]#2{\begingroup%
- \def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
+\long\def\symbolfootnote[#1]#2{\begingroup%
+	\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
 
 %%%%%%%%%% Identação de nota de rodapé %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[stable]{footmisc}
@@ -87,6 +90,7 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 
 % Preambulo: adicionar pacotes
 \usepackage{tikz}
+\usetikzlibrary{calc}  
 \usepackage[most]{tcolorbox}
 \usepackage{atbegshi}
 \usepackage{ifthen}
@@ -158,10 +162,11 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 	\gdef\emailAutorResponsavel{#1}
 }
 
+\newcounter{numautor}
+
 \newcommand{\renderAutores}{%
 	\begingroup
 	\renewcommand{\arraystretch}{1.2}
-	\newcounter{numautor}
 	\newcommand{\virgula}{}%
 	
 	% Primeira linha - nomes com sobrescrito e ORCID
@@ -227,139 +232,130 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 
 %%%%%%%%%%%%%%%
 
-\newcommand{\revistaheader}{
-\noindent
-\thispagestyle{empty}
-\begin{minipage}[t][\textheight][t]{0.72\textwidth}
-	% Bloco da direita (ex: título, autores, etc.)
-	\parbox[c][\textheight][c]{\linewidth}{
-			\centering
-			\begin{tcolorbox}[
-				colback=white,
-				colframe=white,
-				boxrule=0pt,
-				arc=0pt,
-				left=10pt,
-				right=10pt,
-				width=13.2cm,       
-				height=28cm
-				]
-				\begin{minipage}[t]{0.75\linewidth}
-					\includegraphics[width=\linewidth]{\logoRevista}
-				\end{minipage}%
-				\hfill
-				\begin{minipage}[t]{0.22\linewidth}
-					\vspace*{-4.4cm} % ajuste fino: esse valor depende da altura da logo
-					\href{\checkForUpdatesUrl}{%
-						\includegraphics[width=\linewidth]{figuras/botao-check.png}
-					}
-				\end{minipage}
-				
-				\vspace{1cm} % espaçamento abaixo das logos
-				
-				% Título principal
-				{\Large\bfseries \monog}\\[0.5em]
-				
-				% Título em outros idiomas
-				\ifdefined\monogIngles
-					\monogIngles\\[0.5em]
-				\fi
-				\ifdefined\monogEspanhol
-					\monogEspanhol\\[1em]
-				\fi
-				\vspace{0.5em}
-				\renderAutores
-				\begin{flushright}
-					\footnotesize
-					\textbf{Correspondência para:} \emailAutorResponsavel
-				\end{flushright}
-				
-				\ifdefined\resumoEN
-					\vspace{2em}
-					\resumoPT\\[0.3em]
-					\noindent Palavras-chave: \keywordsPT
-				\fi
-				
-				\ifdefined\resumoEN
-					\vspace{2em}
-					\resumoEN\\[0.3em]
-					\noindent Keywords: \keywordsEN
-				\fi
-				
-				\ifdefined\resumoES
-					\vspace{2em}
-					\resumoES\\[0.3em]
-					\noindent Palabras clave: \keywordsES
-				\fi
-				
-				\vfill
-				\begin{flushleft}
-					\scriptsize
-					\textbf{Como citar:} \renderComoCitarAutores~\textbf{\monog.}~\comoCitar
-				\end{flushleft}
-				
-				
-				
-			\end{tcolorbox}		
-	}
-\end{minipage}
-\hfill
-\begin{minipage}[t][\textheight][t]{0.46\textwidth}
-	% Bloco da esquerda (ex: barra lateral)
-	\parbox[c][\textheight][c]{\linewidth}{
-			\centering
-				\begin{tcolorbox}[
-				colback=headergray,
-				colframe=headergray,
-				boxrule=0pt,
-				arc=0pt,
-				left=10pt,
-				right=10pt,
-				width=6cm,         % largura da barra lateral
-				height=32cm,       % altura da página (ajuste conforme margens)
-				valign=center,
-				enlarge left by=-1.5cm, % empurra para fora da margem esquerda
-				enlarge top by=-2.5cm,  % sobe para cobrir da margem superior
-				nobeforeafter
-				]
-				\vspace{1cm}
-				\textbf{\MakeUppercase{\secaoNome}} \\
-				\textbf{Editor responsável pelo artigo: }\editorNome \\[0.5em]
-				
-				\textbf{Recebido em} \\
-				\dataRecebido \\
-				\textbf{Aprovado em} \\
-				\dataAprovado \\
-				\textbf{Publicado em} \\
-				\dataPublicado \\[0.5em]
-				
-				\textbf{PID} \\
-				\pidArtigo \\
-				
-				\href{\licencaUrl}{%
-					\includegraphics[width=3cm]{\logoLicenca} \\[1em]
-				}
-				
-				\textbf{Texto padrão da Licença} \\
-				\textoLicenca \\
-				
-				\textbf{Declaração de Copyright} \\
-				\textoCopyright \\
-				
-				\textbf{Contribuição dos autores segundo a Taxonomia CRediT} \\
-				\textoCRediT \\
-				
-				\vspace{2cm}
-				\textbf{Conflito de interesses} \\
-				\textoConflito \\
-				
-				\textbf{Fonte de financiamento} \\
-				\textoFinanciamento
-			\end{tcolorbox}
-	}
-\end{minipage}%
+% estilo sem cabeçalho/rodapé para as páginas de capa
+\fancypagestyle{capavazia}{%
+	\fancyhf{}%
+	\renewcommand{\headrulewidth}{0pt}%
+	\renewcommand{\footrulewidth}{0pt}%
 }
 
+% precisa do tikz: \usepackage{tikz}
+\newif\ifcapa@ativa
+\AddToHook{shipout/background}{%
+	\ifcapa@ativa
+	\begin{tikzpicture}[remember picture,overlay]
+		% faixa colada na direita cobrindo a página inteira
+		\fill[headergray]
+		([xshift=-.27\paperwidth]current page.north east) rectangle
+		(current page.south east);
+	\end{tikzpicture}%
+	\fi
+}
+
+\newenvironment{revistaheaderenv}{%
+	\clearpage
+	\pagestyle{capavazia}
+	\newgeometry{left=15mm,right=0mm,top=0mm,bottom=0mm}%
+	\capa@ativatrue 
+	
+	\columnratio{0.70,0.30}% esquerda 72% / direita 28%
+	\begin{paracol}{2}%
+		\setlength{\columnsep}{0mm}%
+	}{%
+	\end{paracol}%
+	\restoregeometry
+	\pagestyle{fancy}%
+	\clearpage
+	\capa@ativafalse   
+}
+
+
+
+\newcommand{\revistaheader}{%
+	\begin{revistaheaderenv}
+		
+		% ===== Coluna DIREITA PRIMEIRO (para começar no topo) =====
+		\switchcolumn*   % muda para a direita no mesmo nível vertical
+		\begin{tcolorbox}[enhanced,breakable,
+			frame hidden, interior hidden, % sem borda e sem fundo
+			%colback=headergray,colframe=headergray,
+			%boxrule=0pt,arc=0pt,
+			left=8pt,right=12pt,top=40pt,bottom=53pt]
+			\textbf{\MakeUppercase{\secaoNome}}\\[0.25em]
+			\textbf{Editor responsável pelo artigo: } \editorNome\\[0.75em]
+			
+			\textbf{Recebido em}\\ \dataRecebido\\
+			\textbf{Aprovado em}\\ \dataAprovado\\
+			\textbf{Publicado em}\\ \dataPublicado\\[0.5em]
+			
+			\textbf{PID}\\ \pidArtigo\\[0.75em]
+			
+			\href{\licencaUrl}{\includegraphics[width=3cm]{\logoLicenca}}\\[0.75em]
+			
+			\textbf{Texto padrão da Licença}\\ \textoLicenca\\[0.75em]
+			\textbf{Declaração de Copyright}\\ \textoCopyright\\[0.75em]
+			\textbf{Contribuição dos autores segundo a Taxonomia CRediT}\\ \textoCRediT\\[1.25em]
+			
+			\textbf{Conflito de interesses}\\ \textoConflito\\[0.75em]
+			
+			\textbf{Fonte de financiamento}\\ \textoFinanciamento
+			
+			\vfill\null
+		\end{tcolorbox}
+		
+		% ===== Agora volte para a ESQUERDA e escreva todo o conteúdo =====
+		\switchcolumn
+		\begin{tcolorbox}[enhanced,breakable,
+			colback=white,colframe=headergray,boxrule=0pt,arc=0pt,
+			left=0pt,right=0pt,top=40pt,bottom=40pt]
+			
+			% topo: logo + botão
+			\noindent
+			\begin{minipage}[t]{0.75\linewidth}
+				\includegraphics[width=\linewidth]{\logoRevista}
+			\end{minipage}%
+			\hfill
+			\begin{minipage}[t]{0.22\linewidth}
+				\vspace*{-4.8cm}%
+				\href{\checkForUpdatesUrl}{\includegraphics[width=\linewidth]{figuras/botao-check.png}}
+			\end{minipage}
+			
+			\vspace{1cm}
+			
+			{\Large\bfseries \monog}\\[0.5em]
+			\ifdefined\monogIngles \monogIngles\\[0.5em]\fi
+			\ifdefined\monogEspanhol \monogEspanhol\\[1em]\fi
+			
+			\vspace{0.5em}
+			\renderAutores
+			\begin{flushright}\footnotesize
+				\textbf{Correspondência para:} \emailAutorResponsavel
+			\end{flushright}
+			
+			\ifdefined\resumoPT
+			\vspace{2em}\noindent\textbf{Resumo:}\resumoPT\\[0.3em]
+			\noindent \textbf{Palavras-chave:} \keywordsPT
+			\fi
+			
+			\ifdefined\resumoEN
+			\vspace{2em}\noindent\textbf{Abstract:}\resumoEN\\[0.3em]
+			\noindent \textbf{Keywords:} \keywordsEN
+			\fi
+			
+			\ifdefined\resumoES
+			\vspace{2em}\noindent\textbf{Resumen:}\resumoES\\[0.3em]
+			\noindent \textbf{Palabras clave:} \keywordsES
+			\fi
+			
+			\vspace{2em}
+			\begin{flushleft}\small 
+				\textbf{Como citar: } \renderComoCitarAutores~\textbf{\monog.}~\comoCitar
+			\end{flushleft}
+			
+		\end{tcolorbox}
+		
+	\end{revistaheaderenv}%
+}
 \newcommand{\ccfooter}{%
 	\vspace{0.7cm}%
 	\singlespacing%
@@ -373,66 +369,66 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 %%%% traduzir caption de figuras e tabelas %%%%%%%%%%%%%%%%%
 
 \addto\captionsbrazilian{
-% \renewcommand{\figurename}{Figura}
- \renewcommand{\tablename}{Tabela}
- \renewcommand{\refname}{REFERÊNCIAS}
+	% \renewcommand{\figurename}{Figura}
+	\renewcommand{\tablename}{Tabela}
+	\renewcommand{\refname}{REFERÊNCIAS}
 }
 
 \addto\captionsenglish{
- \renewcommand{\refname}{REFERENCES}
+	\renewcommand{\refname}{REFERENCES}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % % Citação direta 
 \newenvironment{citacaodireta}{%
-  \begin{list}{}{%
-    \small
-    \setlength{\leftmargin}{4cm}
-    \singlespacing
-  }
-  \item\relax
-}{\end{list}}
+	\begin{list}{}{%
+			\small
+			\setlength{\leftmargin}{4cm}
+			\singlespacing
+		}
+		\item\relax
+	}{\end{list}}
 
 % \begin{document}
-%   \lipsum[1]
-% 
-%   \begin{novoambiente}
-%     \lipsum[2]
-%   \end{novoambiente}
-% 
-%   \lipsum[3]
-% \end{document}
+	%   \lipsum[1]
+	% 
+	%   \begin{novoambiente}
+		%     \lipsum[2]
+		%   \end{novoambiente}
+	% 
+	%   \lipsum[3]
+	% \end{document}
 % --- Titulo de secao ---
 
 \newcommand{\secao}[1]{\section{#1}}
 \renewcommand{\section}{\@startsection
-{section} %Nome
-{0} %Nivel
-{0mm} %Indentacao
-{1.5\baselineskip} % Antes do paragrafo
-{1.5\baselineskip} % Depois do paragrafo
-{\noindent\bfseries\uppercase}} % Estilo - negrito e maiusculo
+	{section} %Nome
+	{0} %Nivel
+	{0mm} %Indentacao
+	{1.5\baselineskip} % Antes do paragrafo
+	{1.5\baselineskip} % Depois do paragrafo
+	{\noindent\bfseries\uppercase}} % Estilo - negrito e maiusculo
 
 % Titulo de subsecao ---
 
 \newcommand{\subsecao}[1]{\subsection{#1}}
 \renewcommand{\subsection}{\@startsection
-{subsection} %Nome
-{1} %Nivel
-{0mm} %Indentacao
-{1.5\baselineskip} % Antes do paragrafo
-{1.5\baselineskip} % Depois do paragrafo
-{\noindent\bfseries}} % Estilo
+	{subsection} %Nome
+	{1} %Nivel
+	{0mm} %Indentacao
+	{1.5\baselineskip} % Antes do paragrafo
+	{1.5\baselineskip} % Depois do paragrafo
+	{\noindent\bfseries}} % Estilo
 
 % Titulo de subsubsecao ---
 
 \newcommand{\subsubsecao}[1]{\subsubsection{#1}}
 \renewcommand{\subsubsection}{\@startsection
-{subsubsection}% %Nome
-{2} %Nivel
-{0mm} %Indentacao
-{1.5\baselineskip} % Antes do paragrafo
-{1.5\baselineskip} % Depois do paragrafo
-{\noindent\bfseries\itshape}} % Estilo
+	{subsubsection}% %Nome
+	{2} %Nivel
+	{0mm} %Indentacao
+	{1.5\baselineskip} % Antes do paragrafo
+	{1.5\baselineskip} % Depois do paragrafo
+	{\noindent\bfseries\itshape}} % Estilo
 
 %%%%%%%%%%%Título de Seção de 4° nível %%%%%%%%%%%%%%%%
 \setcounter{secnumdepth}{4}
@@ -440,9 +436,9 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 \newcounter {subsubsubsection}[subsubsection]
 \renewcommand\thesubsubsubsection{\thesubsubsection .\@arabic\c@subsubsubsection}
 \newcommand\subsubsubsection{\@startsection{subsubsubsection}{4}{\z@}%
-				     {1.5\baselineskip} % Antes do paragrafo
-                                     {0.0\baselineskip}
-                                     {\normalsize\bfseries\underbar}}
+	{1.5\baselineskip} % Antes do paragrafo
+	{0.0\baselineskip}
+	{\normalsize\bfseries\underbar}}
 \newcommand*{\subsubsubsectionmark}[1]{\\ \par}
 
 %%%%%%%%%%%Título de Seção de 5° nível %%%%%%%%%%%%%%%%
@@ -452,9 +448,9 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 \newcounter {subsubsubsubsection}[subsubsubsection]
 \renewcommand\thesubsubsubsubsection{\thesubsubsubsection .\@arabic\c@subsubsubsubsection}
 \newcommand\subsubsubsubsection{\@startsection{subsubsubsubsection}{5}{\z@}%
-				     {1.5\baselineskip} % Antes do paragrafo
-                                     {0.0\baselineskip}
-                                     {\normalsize}}
+	{1.5\baselineskip} % Antes do paragrafo
+	{0.0\baselineskip}
+	{\normalsize}}
 % \newcommand*\l@subsubsubsection{\@dottedtocline{3}{10.0em}{4.1em}}
 \newcommand*{\subsubsubsubsectionmark}[1]{\\ \par}
 
@@ -524,7 +520,7 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 }
 
 %%%%%%%%%%%%%%%%%%%%
- 
+
 %\lhead{\footnotesize{\monog}} 
 
 %\setlength\parindent{0pt}
@@ -537,35 +533,35 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 %\fancyhf{} % Limpa cabeçalhos e rodapés
 
 %\fancyfoot[C]{%
-%	\noindent
-%	\begin{tcolorbox}[
-%		colback=headerblue,
-%		colframe=headerblue,
-%		boxrule=0pt,
-%		arc=0pt,
-%		left=15pt,
-%		right=15pt,
-%		outer arc=0pt,
-%		width=\paperwidth,
-%		height=1.0cm,
-%		valign=center,  % centraliza verticalmente
-%		%halign=center,  % centraliza horizontalmente
-%		enlarge left by=-43pt,
-%		%enlarge right by=-\oddsidemargin,
-%		enlarge top by=-13pt,
-%		%enlarge bottom by=0pt
-%		]
-%		\noindent
-%		\begin{minipage}[t]{0.8\textwidth}
-%			\hspace{0.9cm}%
-%			\textcolor{white}{\footnotesize{\editorial}}
-%		\end{minipage}%
-%		\begin{minipage}[t]{0.15\textwidth}
-%			\raggedleft
-%			\textcolor{white}{\thepage}
-%		\end{minipage}
-%		
-%		%\footnotesize{\editorial}]{\thepage}
-%		%\lfoot [\thepage]{\footnotesize{\editorial}
-%	\end{tcolorbox}
-%}
+	%	\noindent
+	%	\begin{tcolorbox}[
+		%		colback=headerblue,
+		%		colframe=headerblue,
+		%		boxrule=0pt,
+		%		arc=0pt,
+		%		left=15pt,
+		%		right=15pt,
+		%		outer arc=0pt,
+		%		width=\paperwidth,
+		%		height=1.0cm,
+		%		valign=center,  % centraliza verticalmente
+		%		%halign=center,  % centraliza horizontalmente
+		%		enlarge left by=-43pt,
+		%		%enlarge right by=-\oddsidemargin,
+		%		enlarge top by=-13pt,
+		%		%enlarge bottom by=0pt
+		%		]
+		%		\noindent
+		%		\begin{minipage}[t]{0.8\textwidth}
+			%			\hspace{0.9cm}%
+			%			\textcolor{white}{\footnotesize{\editorial}}
+			%		\end{minipage}%
+		%		\begin{minipage}[t]{0.15\textwidth}
+			%			\raggedleft
+			%			\textcolor{white}{\thepage}
+			%		\end{minipage}
+		%		
+		%		%\footnotesize{\editorial}]{\thepage}
+		%		%\lfoot [\thepage]{\footnotesize{\editorial}
+			%	\end{tcolorbox}
+		%}
