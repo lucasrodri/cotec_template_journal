@@ -299,6 +299,12 @@ Recurso online / página:
 
 > Para múltiplos autores, separe com and: author = {Silva, Jo{\~a}o and Costa, Lucas and Souza, Jos{\'e}}.
 
+> Para forçar que uma letra permaneça maiúscula em nomes de instituições ou títulos, mesmo quando o estilo converte para minúsculas, envolva-a entre chaves {}.
+
+```latex
+organization = {Pontif\'icia {U}niversidade {C}at\'olica de {M}inas {G}erais},
+```
+
 > Prefira doi quando existir; caso contrário use url + urldate.
 
 >Em capítulos e anais, não repita o nome do livro/evento em title; use booktitle.

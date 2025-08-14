@@ -562,8 +562,6 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 \setlength{\citacaoVSpace}{\baselineskip} % espaço acima/abaixo (ajuste aqui)
 \newcommand{\citacaoFont}{\footnotesize} % fonte dentro da citação
 
-\renewcommand{\authorcapstyle}{\relax}
-
 \makeatletter
 \newenvironment{citacao}{%
 	\par\addvspace{\citacaoVSpace}% espaço ANTES
@@ -581,35 +579,6 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 	\end{list}%
 	\par\endgroup
 	\addvspace{\citacaoVSpace}% espaço DEPOIS
-}
-
-
-\renewcommand{\cite}[2][]{%
-	\leavevmode
-	\let\@citeprevious\@empty%
-	\@cite{%
-		\@for\@citekey:=#2\do%
-		{%
-			\edef\@citekey{\expandafter\@firstofone\@citekey\@empty}%
-			% pega o nome com capitalização normal
-			\expandafter\let\expandafter\@citename%
-			\csname b@\@citekey++EXPL\endcsname%
-			\expandafter\let\expandafter\@citeyear%
-			\csname b@\@citekey++YEAR\endcsname%
-			\ifx\@citeprevious\@empty\else
-			\ifx\@citename\@citeprevious
-			\ABCIcitecommadefault
-			\else
-			\ABCIcitecolondefault
-			\fi
-			\fi
-			\if@filesw\immediate\write\@auxout{\string\citation{\@citekey}}\fi
-			\@ifundefined{b@\@citekey++EXPL}
-			{{\bfseries??}}
-			{{\authorstyle\@citename}, {\yearstyle\@citeyear}\unskip}%
-			\let\@citeprevious\@citename
-		}%
-	}{#1}%
 }
 
 \makeatother
