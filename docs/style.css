@@ -1,0 +1,4 @@
+body { font-family: Arial, sans-serif; margin: 40px; max-width: 800px; }
+nav a { margin-right: 10px; text-decoration: none; color: #0366d6; }
+nav { margin-bottom: 20px; }
+img { max-width: 100%; height: auto; border: 1px solid #ccc; }

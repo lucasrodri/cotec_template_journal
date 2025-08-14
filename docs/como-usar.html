@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Como Usar</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <a href="index.html">Início</a> |
+    <a href="funcionalidades.html">Funcionalidades</a> |
+    <a href="como-usar.html">Como Usar</a> |
+    <a href="exemplos.html">Exemplos</a>
+  </nav>
+  <h1>Como Usar o Modelo</h1>
+  <ol>
+    <li>Clone o repositório:
+      <pre><code>git clone https://github.com/seuusuario/modelo-abnt-ibict.git
+cd modelo-abnt-ibict</code></pre>
+    </li>
+    <li>Compile o projeto com <code>xelatex</code> e <code>biber</code>:
+      <pre><code>xelatex modelo.tex
+biber modelo
+xelatex modelo.tex
+xelatex modelo.tex</code></pre>
+    </li>
+    <li>Personalize os campos de título, autores, resumos e demais informações no arquivo principal.</li>
+  </ol>
+</body>
+</html>
