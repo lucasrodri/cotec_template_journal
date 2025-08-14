@@ -333,4 +333,6 @@ Este modelo é distribuído sob a licença Creative Commons Attribution (CC BY),
 
 Desenvolvido no âmbito do Instituto Brasileiro de Informação em Ciência e Tecnologia (IBICT), com inspiração e adaptações baseadas em modelos ABNT existentes, para apoiar editores, revisores e autores na produção de artigos científicos de alta qualidade tipográfica.
 
-## ✉️ Para dúvidas ou sugestões, abra uma issue no repositório ou entre em contato.
+## ✉️ Dúvidas ou sugestões:
+
+> Para dúvidas ou sugestões, abra uma issue no repositório ou entre em contato.
