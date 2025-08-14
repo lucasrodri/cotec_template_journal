@@ -480,6 +480,26 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 	\MakeUppercase{\sobrenome}%
 }
 
+\newcommand{\listaAutoresCabecalho}{%
+	\StrCount{\autoresLista}{,}[\numAutores]%
+	\ifnum\numAutores<5
+	% até 4 autores: lista todos
+	\def\tempLista{}%
+	\foreach \autorEntry in \autoresLista {%
+		\ifx\autorEntry\empty\else
+		\StrBefore{\autorEntry}{/}[\nome]%
+		\StrBehind{\autorEntry}{/}[\restoA]%
+		\StrBefore{\restoA}{/}[\sobrenome]%
+		\xdef\tempLista{\tempLista\MakeUppercase{\sobrenome}, \nome; }%
+		\fi
+	}%
+	\StrGobbleRight{\tempLista}{2}%
+	\else
+	% mais de 4 autores: só o primeiro + et al.
+	\primeiroAutorSobrenome{} \textit{et al.}%
+	\fi
+}
+
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
@@ -514,8 +534,7 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 		valign=center,
 		]
 		\hspace{1em}%
-		\textcolor{white}{\footnotesize \monog{} – \primeiroAutorSobrenome{}%
-			\ifnum\numAutores>1 \textit{ et al.}\fi}
+		\textcolor{white}{\footnotesize \monog{} – \listaAutoresCabecalho}
 	\end{tcolorbox}
 }
 
@@ -532,36 +551,65 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 %%\renewcommand{\footrulewidth}{0pt} % Remove linha do rodapé
 %\fancyhf{} % Limpa cabeçalhos e rodapés
 
-%\fancyfoot[C]{%
-	%	\noindent
-	%	\begin{tcolorbox}[
-		%		colback=headerblue,
-		%		colframe=headerblue,
-		%		boxrule=0pt,
-		%		arc=0pt,
-		%		left=15pt,
-		%		right=15pt,
-		%		outer arc=0pt,
-		%		width=\paperwidth,
-		%		height=1.0cm,
-		%		valign=center,  % centraliza verticalmente
-		%		%halign=center,  % centraliza horizontalmente
-		%		enlarge left by=-43pt,
-		%		%enlarge right by=-\oddsidemargin,
-		%		enlarge top by=-13pt,
-		%		%enlarge bottom by=0pt
-		%		]
-		%		\noindent
-		%		\begin{minipage}[t]{0.8\textwidth}
-			%			\hspace{0.9cm}%
-			%			\textcolor{white}{\footnotesize{\editorial}}
-			%		\end{minipage}%
-		%		\begin{minipage}[t]{0.15\textwidth}
-			%			\raggedleft
-			%			\textcolor{white}{\thepage}
-			%		\end{minipage}
-		%		
-		%		%\footnotesize{\editorial}]{\thepage}
-		%		%\lfoot [\thepage]{\footnotesize{\editorial}
-			%	\end{tcolorbox}
-		%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%AMBIENTE DE CITACAO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength{\citacaoLeft}
+\newlength{\citacaoRight}
+\newlength{\citacaoVSpace}
+\setlength{\citacaoLeft}{4cm}     % recuo à esquerda
+\setlength{\citacaoRight}{0cm}    % recuo à direita
+\setlength{\citacaoVSpace}{\baselineskip} % espaço acima/abaixo (ajuste aqui)
+\newcommand{\citacaoFont}{\footnotesize} % fonte dentro da citação
+
+\renewcommand{\authorcapstyle}{\relax}
+
+\makeatletter
+\newenvironment{citacao}{%
+	\par\addvspace{\citacaoVSpace}% espaço ANTES
+	\begingroup
+	\citacaoFont
+	% versão "tipo quote" com controle de espaçamentos
+	\begin{list}{}{% margens e espaçamentos finos
+			\leftmargin=\citacaoLeft
+			\rightmargin=\citacaoRight
+			\topsep=0pt \partopsep=0pt \itemsep=0pt \parsep=0pt
+		}\item\relax
+		\setlength{\parindent}{0pt}%
+		\@ifpackageloaded{setspace}{\setstretch{1}}{}% força espaçamento simples se setspace estiver carregado
+	}{%
+	\end{list}%
+	\par\endgroup
+	\addvspace{\citacaoVSpace}% espaço DEPOIS
+}
+
+
+\renewcommand{\cite}[2][]{%
+	\leavevmode
+	\let\@citeprevious\@empty%
+	\@cite{%
+		\@for\@citekey:=#2\do%
+		{%
+			\edef\@citekey{\expandafter\@firstofone\@citekey\@empty}%
+			% pega o nome com capitalização normal
+			\expandafter\let\expandafter\@citename%
+			\csname b@\@citekey++EXPL\endcsname%
+			\expandafter\let\expandafter\@citeyear%
+			\csname b@\@citekey++YEAR\endcsname%
+			\ifx\@citeprevious\@empty\else
+			\ifx\@citename\@citeprevious
+			\ABCIcitecommadefault
+			\else
+			\ABCIcitecolondefault
+			\fi
+			\fi
+			\if@filesw\immediate\write\@auxout{\string\citation{\@citekey}}\fi
+			\@ifundefined{b@\@citekey++EXPL}
+			{{\bfseries??}}
+			{{\authorstyle\@citename}, {\yearstyle\@citeyear}\unskip}%
+			\let\@citeprevious\@citename
+		}%
+	}{#1}%
+}
+
+\makeatother
