@@ -18,29 +18,234 @@
   <div class="container">
     <h1>Como Usar o Modelo</h1>
     <ol>
-      <li>Clone o repositório:
+      <li>Clone este repositório:
         <pre><code>git clone https://github.com/seuusuario/modelo-abnt-ibict.git
 cd modelo-abnt-ibict</code></pre>
       </li>
-      <li>Compile o projeto com <code>xelatex</code> e <code>biber</code>:
-        <pre><code>xelatex modelo.tex
+      <li>Compile o projeto usando uma das opções:
+        <ul>
+          <li>Overleaf: envie todos os arquivos para um projeto novo.</li>
+          <li>Local: use <code>pdflatex</code> ou <code>xelatex</code> + <code>biber</code>:
+            <pre><code>xelatex modelo.tex
 biber modelo
 xelatex modelo.tex
 xelatex modelo.tex</code></pre>
+          </li>
+        </ul>
       </li>
-      <li>Personalize os campos de título, autores, resumos e demais informações no arquivo principal.</li>
+      <li>Personalize os campos de título, autores, resumo, palavras-chave e conteúdo.</li>
     </ol>
-    <h2>Principais Comandos para Personalização</h2>
-    <p>O arquivo <code>cotec.tex</code> disponibiliza comandos que podem ser ajustados pelos autores:</p>
+
+    <h2>Configuração da Revista</h2>
+    <pre><code>\setLogoRevista{figuras/logo-revista.png} % Define a logo
+\setCheckForUpdatesUrl{http://link.com}   % URL para atualizações
+</code></pre>
+
+    <h2>Dados do Artigo</h2>
+    <pre><code>\newcommand{\secaoNome}{Seção do Artigo}     % Nome da seção
+\newcommand{\editorNome}{Nome completo}      % Nome do editor
+\newcommand{\dataRecebido}{31/03/2025}       % Data de recebimento
+\newcommand{\dataAprovado}{28/05/2025}       % Data de aprovação
+\newcommand{\dataPublicado}{05/06/2025}      % Data de publicação
+\newcommand{\pidArtigo}{10.0000/...}         % PID do artigo
+\newcommand{\doiArtigo}{https://doi.org/...} % DOI do artigo
+</code></pre>
+
+    <h2>Licenças e Créditos</h2>
+    <pre><code>\tipoLicenca{CC-BY}     % Tipo de licença Creative Commons
+\tipoLicenca{CC-BY-SA}  % (Disponíveis: CC-BY, CC-BY-SA, CC-BY-NC, CC-BY-ND, CC-BY-NC-SA, CC-BY-NC-ND)
+
+\newcommand{\textoLicenca}{...}    % Texto explicativo da licença
+\newcommand{\textoCopyright}{...}  % Declaração de direitos
+\newcommand{\textoCRediT}{...}     % Créditos CRediT Taxonomy
+\newcommand{\textoConflito}{...}   % Declaração de conflitos
+\newcommand{\textoFinanciamento}{...} % Financiamento
+</code></pre>
+
+    <h2>Informações dos Autores</h2>
+    <pre><code>\afiliacao{1}{Instituto X, Departamento Y, Universidade Z}
+\afiliacao{2}{Laboratório ABC, Universidade DEF}
+
+\autor{João da}{Silva}{1}{https://orcid.org/...}
+\autor{Lucas}{Costa}{2}{https://orcid.org/...}
+\autor{José}{Souza}{1}{https://orcid.org/...}
+
+\emailCorrespondencia{email@mail.com} % E-mail do autor de contato
+</code></pre>
+
+    <h2>Título, Resumo e Palavras-chave</h2>
+    <p><strong>Português</strong></p>
+    <pre><code>\newcommand{\monog}{Título do Artigo em Português}
+\newcommand{\resumoPT}{Texto do resumo em português...}
+\newcommand{\keywordsPT}{termo1; termo2; termo3; termo4; termo5.}
+</code></pre>
+
+    <p><strong>Inglês</strong></p>
+    <pre><code>\newcommand{\monogIngles}{Título do artigo em Inglês}
+\newcommand{\resumoEN}{Texto do resumo em inglês...}
+\newcommand{\keywordsEN}{term1; term2; term3; term4; term5.}
+</code></pre>
+
+    <p><strong>Espanhol</strong></p>
+    <pre><code>\newcommand{\monogEspanhol}{Título do artigo em Espanhol}
+\newcommand{\resumoES}{Texto do resumo em espanhol...}
+\newcommand{\keywordsES}{término1; término2; término3; término4; término5.}
+</code></pre>
+
+    <h2>Como Citar o Artigo</h2>
+    <pre><code>\newcommand{\comoCitar}{
+    \textit{Nome da Revista}, Cidade, v. 23, p. x--xx, 2025.
+    DOI: https://doi.org/10.0000/0000-0000-0000.
+}
+</code></pre>
+
+    <h2>Bibliografia (BibTeX)</h2>
+    <p>Adicione suas referências no arquivo <code>bibliografia.bib</code>. No final do arquivo principal inclua:</p>
+    <pre><code>\bibliography{bibliografia}
+%\bibliographystyle{abntex2-alf} % autor-ano
+%\bibliographystyle{abntex2-num} % numérico
+</code></pre>
+
+    <h3>Campos mais comuns (por tipo)</h3>
+    <p>Regra geral ABNT (estilo autor-ano):</p>
     <ul>
-      <li><code>\setLogoRevista{caminho}</code> – define o logotipo da revista.</li>
-      <li><code>\setCheckForUpdatesUrl{url}</code> – configura o link para atualizações do artigo.</li>
-      <li><code>\secaoNome</code> e <code>\editorNome</code> – identificam a seção e o editor responsável.</li>
-      <li><code>\dataRecebido</code>, <code>\dataAprovado</code> e <code>\dataPublicado</code> – registram as datas do processo editorial.</li>
-      <li><code>\pidArtigo</code> e <code>\doiArtigo</code> – configuram os identificadores oficiais do artigo.</li>
-      <li><code>\tipoLicenca{...}</code> – seleciona a licença de publicação.</li>
-      <li><code>\textoLicenca</code>, <code>\textoCopyright</code>, <code>\textoCRediT</code>, <code>\textoConflito</code> e <code>\textoFinanciamento</code> – definem os textos das seções obrigatórias.</li>
+      <li>Autor(es) separados por <code>and</code>.</li>
+      <li>Título com apenas nomes próprios em maiúsculas.</li>
+      <li>Cidade (<code>address</code>), editora (<code>publisher</code>) e ano (<code>year</code>) em livros.</li>
+      <li>DOI/URL quando existir; para fontes online inclua <code>url</code> e <code>urldate</code>.</li>
     </ul>
+    <ul>
+      <li><strong>@article</strong>: author, title, journal, year, volume, number, pages, doi/url.</li>
+      <li><strong>@inproceedings</strong>: author, title, booktitle, year, address, publisher/organization, pages.</li>
+      <li><strong>@incollection</strong>: author, title, booktitle, editor, publisher, address, year, pages.</li>
+      <li><strong>@book</strong>: author/editor, title, publisher, address, year, edition, doi/url.</li>
+      <li><strong>@phdthesis / @mastersthesis</strong>: author, title, school, address, year, type.</li>
+      <li><strong>@techreport</strong>: author, title, institution, year, number, address, url/doi.</li>
+      <li><strong>@misc / @online</strong>: author/organization, title, year, url, urldate, note.</li>
+    </ul>
+
+    <div class="dica"><strong>Dica:</strong> no campo <code>edition</code>, informe apenas o número (por exemplo, <code>edition = {2}</code>). O estilo formata automaticamente como “2. ed.”.</div>
+
+    <h3>Exemplos prontos</h3>
+    <p>Artigo de periódico:</p>
+    <pre><code>@article{ponciano2018agreement,
+  author  = {Ponciano, Leonardo and Brasileiro, Francisco},
+  title   = {Agreement-based credibility assessment and task replication in human computation systems},
+  journal = {Future Generation Computer Systems},
+  year    = {2018},
+  volume  = {87},
+  pages   = {159--170},
+  doi     = {10.1016/j.future.2018.04.058}
+}
+</code></pre>
+
+    <p>Artigo em anais/atas:</p>
+    <pre><code>@inproceedings{ponciano2017hfcs,
+  author    = {Ponciano, Leonardo and Others},
+  title     = {Designing for pragmatists and fundamentalists: Privacy concerns and attitudes on the IoT},
+  booktitle = {Brazilian Symposium on Human Factors in Computing Systems},
+  year      = {2017},
+  address   = {Joinville},
+  publisher = {ACM},
+  pages     = {1--10}
+}
+</code></pre>
+
+    <p>Capítulo de livro:</p>
+    <pre><code>@incollection{bourdieu2011espaco,
+  author    = {Bourdieu, Pierre},
+  title     = {Espaço social e espaço simbólico},
+  booktitle = {Razões práticas: sobre a teoria da ação},
+  editor    = {Bourdieu, Pierre},
+  publisher = {Papirus},
+  address   = {Campinas},
+  year      = {2011},
+  pages     = {13--27}
+}
+</code></pre>
+
+    <p>Livro:</p>
+    <pre><code>@book{arroyo2013oficio,
+  author    = {Arroyo, Miguel Gonz{\'a}lez},
+  title     = {Of{\'\i}cio de mestre: Imagens e auto-imagens},
+  edition   = {15},
+  address   = {Petr{\'o}polis},
+  publisher = {Vozes},
+  year      = {2013}
+}
+</code></pre>
+
+    <p>Tese / Dissertação:</p>
+    <pre><code>@phdthesis{dickman1996tese,
+  author  = {Dickman, Adriana Gomes},
+  title   = {Transi{\c{c}}{\~o}es de Fases de N{\~a}o-equil{\'\i}brio em Sistemas de Part{\'\i}culas Interagentes},
+  school  = {Universidade Federal de Minas Gerais},
+  address = {Belo Horizonte},
+  year    = {1996},
+  type    = {Tese (Doutorado em F{\'\i}sica)}
+}
+
+@mastersthesis{pertence2021dissertacao,
+  author  = {Pertence, Maria L{\'u}cia Barbosa},
+  title   = {Ensino de f{\'\i}sica para estudantes cegos: Oficina sobre cria{\c{c}}{\~a}o e adapta{\c{c}}{\~a}o de materiais did{\'a}ticos},
+  school  = {Pontif{\'\i}cia Universidade Cat{\'o}lica de Minas Gerais},
+  address = {Belo Horizonte},
+  year    = {2021},
+  type    = {Disserta{\c{c}}{\~a}o (Mestrado em Ensino)}
+}
+</code></pre>
+
+    <p>Relatório técnico:</p>
+    <pre><code>@techreport{instituicao2025relatorio,
+  author      = {Sobrenome, Nome and Outro, Autor},
+  title       = {Título do relatório técnico},
+  institution = {Institui{\c{c}}{\~a}o Respons{\'a}vel},
+  number      = {Rel. T{\'e}c. 123/2025},
+  address     = {Cidade},
+  year        = {2025},
+  url         = {https://exemplo.org/relatorio.pdf},
+  urldate     = {2025-06-15}
+}
+</code></pre>
+
+    <p>Recurso online / página:</p>
+    <pre><code>@online{pucminas2019referencias,
+  organization = {PUC Minas},
+  title   = {Elabora{\c{c}}{\~a}o de refer{\^e}ncias: ABNT NBR 6023},
+  year    = {2019},
+  url     = {http://portal.pucminas.br/biblioteca/documentos/Guia-ABNT-referencias.pdf},
+  urldate = {2025-04-15},
+  note    = {Acesso em: 15 abr. 2025}
+}
+</code></pre>
+
+    <div class="dica"><strong>Dica:</strong> Use sempre acentos normalmente nos campos BibTeX; para múltiplos autores, separe com <code>and</code>. Para forçar que uma letra permaneça maiúscula, envolva-a entre chaves <code>{}</code>. Prefira <code>doi</code> quando existir.</div>
+
+    <div class="dica"><strong>Dica:</strong> Em capítulos e anais, não repita o nome do livro ou evento em <code>title</code>; use <code>booktitle</code>.</div>
+
+    <h2>Exemplos de Citação no Texto</h2>
+    <p>Parêntese:</p>
+    <pre><code>\cite{ponciano2018agreement} % → (Ponciano; Brasileiro, 2018)
+</code></pre>
+    <p>Narrativa:</p>
+    <pre><code>\citeonline{ponciano2018agreement} mostram que ... % → Ponciano e Brasileiro (2018) mostram que...
+</code></pre>
+    <p>Citação longa:</p>
+    <pre><code>\begin{citacao}
+Texto recuado, fonte menor e espaçamento simples.
+\end{citacao}
+</code></pre>
+
+    <h2>Licença</h2>
+    <p>Este modelo é distribuído sob a licença Creative Commons Attribution (CC BY), permitindo uso, distribuição e adaptação, desde que seja dado o devido crédito.</p>
+
+    <h2>Créditos</h2>
+    <p>Desenvolvido no âmbito do Instituto Brasileiro de Informação em Ciência e Tecnologia (IBICT), com inspiração e adaptações baseadas em modelos ABNT existentes, para apoiar editores, revisores e autores na produção de artigos científicos de alta qualidade tipográfica.</p>
+
+    <h2>Dúvidas ou sugestões</h2>
+    <p>Para dúvidas ou sugestões, abra uma issue no repositório ou entre em contato.</p>
+
   </div>
 </body>
 </html>
+
