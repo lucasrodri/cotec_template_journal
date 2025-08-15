@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <title>Funcionalidades</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -12,13 +15,21 @@
     <a href="como-usar.html">Como Usar</a> |
     <a href="exemplos.html">Exemplos</a>
   </nav>
-  <h1>Funcionalidades do Modelo</h1>
-  <ul>
-    <li>Estrutura completa para artigos científicos com título, autores e resumos em múltiplos idiomas.</li>
-    <li>Suporte a figuras, tabelas, equações e algoritmos com legendas e fontes.</li>
-    <li>Ambientes de citação personalizados conforme a ABNT.</li>
-    <li>Citações e referências automatizadas via <code>abntex2cite</code>.</li>
-    <li>Modelos prontos para seções como direitos autorais, conflitos de interesse e financiamentos.</li>
-  </ul>
+  <div class="container">
+    <h1>Funcionalidades do Modelo</h1>
+    <p>
+      O template foi pensado para simplificar a preparação de artigos científicos seguindo as normas da ABNT. Entre os recursos
+      disponíveis estão:
+    </p>
+    <ul>
+      <li>Estrutura completa para artigos com título, autores e resumos em múltiplos idiomas.</li>
+      <li>Suporte a figuras, tabelas, equações e algoritmos com legendas e fontes.</li>
+      <li>Ambientes de citação personalizados conforme a ABNT e integração com ORCID.</li>
+      <li>Citações e referências automatizadas via <code>abntex2cite</code>.</li>
+      <li>Modelos prontos para seções como direitos autorais, conflitos de interesse e financiamentos.</li>
+      <li>Configuração de metadados da revista, como datas, DOI, PID e tipo de licença.</li>
+      <li>Compatibilidade com <code>xelatex</code> e <code>biber</code>, garantindo alta qualidade tipográfica.</li>
+    </ul>
+  </div>
 </body>
 </html>

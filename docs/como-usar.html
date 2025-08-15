@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <title>Como Usar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -12,19 +15,32 @@
     <a href="como-usar.html">Como Usar</a> |
     <a href="exemplos.html">Exemplos</a>
   </nav>
-  <h1>Como Usar o Modelo</h1>
-  <ol>
-    <li>Clone o repositório:
-      <pre><code>git clone https://github.com/seuusuario/modelo-abnt-ibict.git
+  <div class="container">
+    <h1>Como Usar o Modelo</h1>
+    <ol>
+      <li>Clone o repositório:
+        <pre><code>git clone https://github.com/seuusuario/modelo-abnt-ibict.git
 cd modelo-abnt-ibict</code></pre>
-    </li>
-    <li>Compile o projeto com <code>xelatex</code> e <code>biber</code>:
-      <pre><code>xelatex modelo.tex
+      </li>
+      <li>Compile o projeto com <code>xelatex</code> e <code>biber</code>:
+        <pre><code>xelatex modelo.tex
 biber modelo
 xelatex modelo.tex
 xelatex modelo.tex</code></pre>
-    </li>
-    <li>Personalize os campos de título, autores, resumos e demais informações no arquivo principal.</li>
-  </ol>
+      </li>
+      <li>Personalize os campos de título, autores, resumos e demais informações no arquivo principal.</li>
+    </ol>
+    <h2>Principais Comandos para Personalização</h2>
+    <p>O arquivo <code>cotec.tex</code> disponibiliza comandos que podem ser ajustados pelos autores:</p>
+    <ul>
+      <li><code>\setLogoRevista{caminho}</code> – define o logotipo da revista.</li>
+      <li><code>\setCheckForUpdatesUrl{url}</code> – configura o link para atualizações do artigo.</li>
+      <li><code>\secaoNome</code> e <code>\editorNome</code> – identificam a seção e o editor responsável.</li>
+      <li><code>\dataRecebido</code>, <code>\dataAprovado</code> e <code>\dataPublicado</code> – registram as datas do processo editorial.</li>
+      <li><code>\pidArtigo</code> e <code>\doiArtigo</code> – configuram os identificadores oficiais do artigo.</li>
+      <li><code>\tipoLicenca{...}</code> – seleciona a licença de publicação.</li>
+      <li><code>\textoLicenca</code>, <code>\textoCopyright</code>, <code>\textoCRediT</code>, <code>\textoConflito</code> e <code>\textoFinanciamento</code> – definem os textos das seções obrigatórias.</li>
+    </ul>
+  </div>
 </body>
 </html>
