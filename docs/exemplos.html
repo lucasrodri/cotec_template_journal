@@ -7,6 +7,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .p-esquerda p {
+      text-align: left;
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -15,20 +20,195 @@
     <a href="como-usar.html">Como Usar</a> |
     <a href="exemplos.html">Exemplos</a>
   </nav>
-  <div class="container">
-    <h1>Exemplos de Comandos</h1>
-    <p>Abaixo estão alguns comandos úteis disponíveis no modelo e como eles impactam o documento final.</p>
+  <div class="container p-esquerda">
+    <h1>Exemplos Visuais dos Comandos</h1>
+    <p>Veja abaixo exemplos práticos de cada comando do modelo e o resultado visual gerado no PDF.</p>
     <h2>Configuração da Revista</h2>
-    <pre><code>\setLogoRevista{figuras/logo-revista.png}
-\setCheckForUpdatesUrl{http://link.com}</code></pre>
-    <img src="images/exemplo1.svg" alt="Exemplo de configuração" />
+    <pre><code>\setLogoRevista{figuras/logo-revista.png}</code></pre>
+    <p>Aonde <i>"figuras/logo-revista.png"</i> é o caminho para a imagem do logo da revista.</p>
+    <pre><code>\setCheckForUpdatesUrl{http://link.com}</code></pre>
+    <p>Aonde <i>"http://link.com"</i> é a URL para verificar atualizações.</p>
+    <img src="images/logo.png" alt="Logo da revista no topo do artigo" />
+
+    <h2>Dados do Artigo</h2>
+    <pre><code>\secaoNome{Artigo Original}</code></pre>
+    <p>"Artigo Original" é o nome da seção do artigo (ex: Revisão, Relato de Caso, etc).</p>
+    <pre><code>\editorNome{Nome do Editor}</code></pre>
+    <p>"Nome do Editor" é o responsável pela edição do artigo.</p>
+    <pre><code>\dataRecebido{31/03/2025}</code></pre>
+    <p>Data em que o artigo foi recebido.</p>
+    <pre><code>\dataAprovado{28/05/2025}</code></pre>
+    <p>Data em que o artigo foi aprovado.</p>
+    <pre><code>\dataPublicado{05/06/2025}</code></pre>
+    <p>Data em que o artigo foi publicado.</p>
+    <pre><code>\pidArtigo{10.0000/...}</code></pre>
+    <p>PID é o identificador único do artigo.</p>
+    <pre><code>\doiArtigo{https://doi.org/...}</code></pre>
+    <p>DOI é o identificador digital do artigo.</p>
+    <img src="images/secao.png" alt="Exemplo visual dos metadados do artigo" />
+
+    <h2>Licenças e Créditos</h2>
+    <pre><code>\tipoLicenca{CC-BY-SA}</code></pre>
+    <p class="exemplo-left">Tipo de licença Creative Commons do artigo (ex: CC-BY, CC-BY-SA, CC-BY-NC, CC-BY-ND, CC-BY-NC-SA e CC-BY-NC-ND). Ele automaticamente atribui a imagem da licença correspondente.</p>
+    <pre><code>\textoLicenca{Este é um artigo de acesso aberto distribuído sob os termos da licença Creative Commons Attribution (CC BY-SA), que permite uso, distribuição e reprodução em qualquer meio, desde que o trabalho original seja devidamente citado.}</code></pre>
+    <p class="exemplo-left">Texto explicativo sobre a licença escolhida.</p>
+    <pre><code>\textoCopyright{© 2025 Nome da Revista. Os autores mantêm os direitos autorais e concedem à revista o direito de primeira publicação.}</code></pre>
+    <p class="exemplo-left">Declaração de direitos autorais do artigo.</p>
+    <pre><code>\textoCRediT{Conceituação: Autor A; Metodologia: Autor B; Análise de dados: Autor C; Redação – rascunho original: Autor A; Revisão e edição: Autor B e Autor C.}</code></pre>
+    <p class="exemplo-left">Créditos dos autores segundo a Taxonomia CRediT.</p>
+    <pre><code>\textoConflito{Os autores declaram que não existem conflitos de interesse relacionados a este trabalho.}</code></pre>
+    <p class="exemplo-left">Declaração sobre conflitos de interesse.</p>
+    <pre><code>\textoFinanciamento{Esta pesquisa foi financiada pelo Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq), processo nº 000000/2025-0.}</code></pre>
+    <p class="exemplo-left">Fonte de financiamento do trabalho.</p>
+    <img src="images/licenca.png" alt="Exemplo visual de bloco de licença e créditos" />
+
     <h2>Informações dos Autores</h2>
-    <pre><code>\autor{João da}{Silva}{1}{https://orcid.org/...}</code></pre>
-    <img src="images/exemplo2.svg" alt="Exemplo de autores" />
-    <h2>Metadados e Licença</h2>
-    <pre><code>\pidArtigo{10.0000/0000-0000-idartigo}
-\doiArtigo{https://doi.org/10.0000/0000-0000-idartigo}
-\tipoLicenca{CC-BY-SA}</code></pre>
+    <pre><code>\afiliacao{1}{Instituto X, Departamento Y, Universidade Z}</code></pre>
+    <p class="exemplo-left">Afiliação do autor, indicando instituição, departamento e universidade. O número identifica a afiliação para os autores.</p>
+    <pre><code>\autor{João da}{Silva}{1}{https://orcid.org/0000-0000-0000-0001}</code></pre>
+    <p class="exemplo-left">Nome do autor, número da afiliação e link do ORCID. Repita para cada autor.</p>
+    <pre><code>\emailCorrespondencia{email@mail.com}</code></pre>
+    <p class="exemplo-left">E-mail do autor responsável pela correspondência.</p>
+    <img src="images/autores.png" alt="Exemplo visual de autores e afiliações" />
+
+    <h2>Título, Resumo e Palavras-chave</h2>
+    <pre><code>\monog{Título do Artigo em Português}</code></pre>
+    <p class="exemplo-left">Título do artigo em português, claro e objetivo.</p>
+    <pre><code>\resumoPT{Este artigo apresenta uma análise sobre ...}</code></pre>
+    <p class="exemplo-left">Resumo do artigo em português, destacando objetivo, método e principais resultados.</p>
+    <pre><code>\keywordsPT{inteligência artificial; educação; personalização; aprendizagem; tecnologia}</code></pre>
+    <p class="exemplo-left">Palavras-chave separadas por ponto e vírgula, representando os principais temas do artigo.</p>
+    <img src="images/titulo.png" alt="Exemplo visual de título, resumo e palavras-chave" />
+
+    <h2>Resumo em Inglês</h2>
+    <pre><code>\monogIngles{Title of the Article in English}</code></pre>
+    <p class="exemplo-left">Título do artigo em inglês, fiel ao original.</p>
+    <pre><code>\resumoEN{This article presents an analysis of ...}</code></pre>
+    <p class="exemplo-left">Resumo do artigo em inglês, com objetivo, método e resultados.</p>
+    <pre><code>\keywordsEN{artificial intelligence; education; personalization; learning; technology}</code></pre>
+    <p class="exemplo-left">Palavras-chave em inglês, separadas por ponto e vírgula, representando os principais temas do artigo.</p>
+    <img src="images/titulo2.png" alt="Exemplo visual de abstract em inglês" />
+
+    <h2>Resumo em Espanhol</h2>
+    <pre><code>\monogEspanhol{Título del artigo en Español}</code></pre>
+    <p class="exemplo-left">Título do artigo em espanhol, fiel ao original.</p>
+    <pre><code>\resumoES{Este artículo apresenta un análise sobre ...}</code></pre>
+    <p class="exemplo-left">Resumo do artigo em espanhol, com objetivo, método e resultados.</p>
+    <pre><code>\keywordsES{inteligencia artificial; educação; personalização; aprendizagem; tecnologia}</code></pre>
+    <p class="exemplo-left">Palavras-chave em espanhol, separadas por ponto e vírgula, representando os principais temas do artigo.</p>
+    <img src="images/titulo3.png" alt="Exemplo visual de resumen em espanhol" />
+
+    <h2>Como Citar o Artigo</h2>
+    <pre><code>\comoCitar{
+  \textit{Nome da Revista}, Cidade, v. 23, p. x--xx, 2025.
+  DOI: https://doi.org/10.0000/0000-0000-0000.
+}</code></pre>
+    <p class="exemplo-left">Este bloco aparece no final da capa do artigo e orienta o leitor sobre como citar corretamente o trabalho. Os nomes dos autores, título do artigo e DOI são preenchidos automaticamente pelos comandos anteriores.</p>
+    <img src="images/comocitar.png" alt="Exemplo visual de bloco de citação sugerida" />
+
+    <h2>Bibliografia (BibTeX)</h2>
+    <pre><code>\bibliography{bibliografia}
+\bibliographystyle{abntex2-alf}</code></pre>
+<p class="exemplo-left">Inserido ao final do documento, antes do <i>end{document}</i>, este comando serve para incluir a bibliografia do artigo de acordo com as normas da ABNT. As Referências são extraídas automaticamente dos comandos <i>\cite</i> e <i>\citeonline</i> utilizados no texto e adicionadas no arquivo <i>bibliografia.bib</i> de acordo com os padrões do LaTeX.</p>
+    <img src="images/ref.png" alt="Exemplo de lista de referências" />
+
+    <h2>Exemplo de Citação no Texto</h2>
+    <p class="exemplo-left">A citação pode ser realizada das seguintes formas:</p>
+    <pre><code>Teste de citação:~\cite{ponciano2018agreement}.</code></pre>
+    <p class="exemplo-left">Citação no formato autor-data, usada dentro do texto.</p>
+    <pre><code>Teste de citação com dois autores:~\cite{ponciano2018agreement, ferreira}.</code></pre>
+    <p class="exemplo-left">Citação com dois autores, separada por vírgula.</p>
+    <pre><code>Teste em texto corrido:~\citeonline{ponciano2018agreement}.</code></pre>
+    <p class="exemplo-left">Citação narrativa, usada para destacar o autor no texto.</p>
+    <img src="images/citacao1.png" alt="Exemplo visual de citação no texto" />
+    <p class="exemplo-left">Além disso é possível realizar citações longas em um bloco específico:</p>
+    <pre><code>
+\begin{citacao}
+	A citação longa deve ser formatada com recuo à esquerda de 4 cm,
+	fonte menor que o corpo do texto e espaçamento simples, conforme as
+	normas da ABNT. Este exemplo demonstra o comportamento do ambiente,
+	mostrando como o texto fica visualmente destacado em relação ao
+	restante do conteúdo, permitindo a identificação imediata de uma
+	citação direta longa no documento.
+\end{citacao}
+  </code></pre>
+    <img src="images/citacao2.png" alt="Exemplo visual de citação longa" />
+
+    <h2>Exemplo de Figura</h2>
+    <p class="exemplo-left">Um exemplo de figura inserida no texto:</p>
+    <pre><code>	\begin{figure}[htb]
+		\centering	
+		\caption[Processo de Revisão da Revista X.]{Processo de revisão da revista X}
+		\label{fig:figura1}
+		\includegraphics[width=0.8\textwidth]{figuras/review.png}\\
+		\textbf{\footnotesize Fonte: Dados da Pesquisa.}
+	\end{figure}</code></pre>
+    <p class="exemplo-left">O comando <i>[htb]</i> indica que a figura pode ser posicionada aqui (h), no topo (t) ou na parte inferior (b) da página. O comando <i>\centering</i> centraliza a figura na página. O comando <i>\caption</i> define a legenda da figura, enquanto o comando <i>\label</i> permite a referência cruzada. O comando <i>\label</i> deve ser colocado após o comando <i>\caption</i> para garantir que a referência esteja correta. O comando <i>\includegraphics</i> é utilizado para inserir a imagem da figura. E por fim, o comando <i>\textbf{\footnotesize Fonte: Dados da Pesquisa.}</i> é utilizado para adicionar a fonte da figura.</p>
+    <img src="images/imagem.png" alt="Exemplo visual de figura" />
+
+    <h2>Exemplo de Tabela</h2>
+    <p class="exemplo-left">Um exemplo de tabela inserida no texto:</p>
+    <pre><code>	\begin{table}[ht]
+		\centering
+		\caption{Número de artigos e edições publicados pela revista X entre 2016 e 2020}
+		\label{tab:tabela1}
+		% Conteúdo da tabela
+		\begin{tabular}{l|c|c}
+			\hline
+			\textbf{Ano}	& \textbf{Número de artigos} & \textbf{Número de edições} \\
+			\hline
+			2020	& 11 &  2 \\
+			2019	& 12 &  2 \\
+			2018	& 10 &  2 \\
+			2017   & 10  &  2 \\
+			2016	& 10  &  2 \\
+			\hline
+		\end{tabular}
+		{\footnotesize\\ \textbf{Fonte: Dados da Pesquisa.}}
+	\end{table}</code></pre>
+    <p class="exemplo-left">O comando <i>[ht]</i> indica que a tabela pode ser posicionada aqui (h) ou no topo (t) da página. O comando <i>\centering</i> centraliza a tabela na página. O comando <i>\caption</i> define a legenda da tabela, enquanto o comando <i>\label</i> permite a referência cruzada. O ambiente <i>tabular</i> é utilizado para definir as colunas e linhas da tabela, onde <i>l</i> indica coluna alinhada à esquerda e <i>c</i> coluna centralizada. O comando <i>\hline</i> cria linhas horizontais para separar os cabeçalhos dos dados. E por fim, o comando <i>\textbf{\footnotesize Fonte: Dados da Pesquisa.}</i> é utilizado para adicionar a fonte da tabela.</p>
+    <img src="images/tabela.png" alt="Exemplo visual de tabela" />
+
+    <h2>Exemplos de Equação</h2>
+    <p class="exemplo-left">As equações podem ser inseridas usando o ambiente <i>equation</i> ou inline com o símbolo <i>$</i>. Veja alguns exemplos:</p>
+    <pre><code>	\begin{equation}
+		\label{eq:aid}
+		y_{i,d}=\frac{\displaystyle\sum_{w\in Y_{i,d}}s_{w,d}}{|Y_{i,d}|}
+	\end{equation}
+	
+	\begin{equation}
+		\label{eq:bid}
+		x_{i,d}=\frac{\displaystyle\sum_{w\in X_{i,d}}s_{w,d}}{|X_{i,d}|}
+	\end{equation}
+	
+	\begin{equation}
+		\label{eq:qscore}
+		r_{i,d} = \frac{s_{i,d} + y_{i,d}-x_{i,d} + 1}{3}, r_{i,d}\in[0,1]
+	\end{equation}</code></pre>
+    <p class="exemplo-left">As equações acima são exemplos de como inserir fórmulas matemáticas complexas no LaTeX, utilizando o ambiente <i>equation</i> para numeração automática e referência cruzada através do uso de <i>\ref{eq:aid}</i>.</p>
+    <img src="images/equacao.png" alt="Exemplo visual de equação" />
+
+    <pre><code>$r_{i,d} = \frac{s_{i,d} + y_{i,d}-x_{i,d} + 1}{3}, r_{i,d}\in[0,1]$</code></pre>
+    <p class="exemplo-left">As equações acima são exemplos de como inserir fórmulas matemáticas inline no LaTeX, utilizando o símbolo <i>$</i> para delimitar a equação.</p>
+    
+    <h2>Exemplo de Algoritmo</h2>
+    <p class="exemplo-left">Um exemplo de algoritmo em pseudocódigo:</p>
+    <pre><code>	\begin{algorithm}
+		\caption{Valor Máximo no Vetor}
+		\label{alg:max}
+		\begin{algorithmic}[1]
+			\REQUIRE $list$
+			\ENSURE $biggest\_item$
+			\STATE $biggest\_item \Leftarrow list[0]$
+			\FORALL{$item$ in $list$}
+			\IF{$item > biggest\_item$}
+			\STATE $biggest\_item \Leftarrow item$
+			\ENDIF
+			\ENDFOR
+		\end{algorithmic}
+	\end{algorithm}</code></pre>
+    <img src="images/algoritmo.png" alt="Exemplo visual de algoritmo" />
+
   </div>
 </body>
 </html>

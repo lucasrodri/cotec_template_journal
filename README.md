@@ -39,12 +39,20 @@ O modelo oferece uma base pronta para editores e autores produzirem artigos comp
 ## 📂 Estrutura do Projeto
 
 ```
-├── modelo.tex # Arquivo principal do artigo
-├── estilo.sty # Definições de estilo e formatação
-├── referencias.bib # Arquivo BibTeX com referências
-├── figuras/ # Pasta para figuras
-├── template/ # Imagens e arquivos auxiliares do modelo
-└── README.md # Este arquivo
+cotec_template_journal/
+├── docs/                    # Site e documentação do projeto
+├── figuras/                 # Imagens usadas no artigo/modelo
+├── template/                # Logos e recursos auxiliares do template
+├── LICENSE
+├── README.md
+├── abntex2-alf.bst          # Estilo BibTeX (ABNT autor-data)
+├── abntex2cite.sty          # Pacote de citações ABNT
+├── abakos.def               # Definições auxiliares do pacote abakos
+├── abakos.sty               # Estilo/comandos do template
+├── bibliografia.bib         # Base de referências (BibTeX)
+├── cotec.tex                # Arquivo principal do modelo de artigo
+├── cotec.pdf                # PDF gerado a partir de cotec.tex
+└── modelo_artigo.pdf        # PDF de exemplo do modelo
 ```
 
 ## 🚀 Como Usar
@@ -338,6 +346,8 @@ Este modelo é distribuído sob a licença Creative Commons Attribution (CC BY),
 ## 📣 Créditos
 
 Desenvolvido no âmbito do Instituto Brasileiro de Informação em Ciência e Tecnologia (IBICT), com inspiração e adaptações baseadas em modelos ABNT existentes, para apoiar editores, revisores e autores na produção de artigos científicos de alta qualidade tipográfica.
+
+Baseado no modelo de artigos LaTeX da revista Abakós (PUC Minas). Os créditos e agradecimentos vão para a equipe editorial da Abakós, que desenvolveu e compartilhou o template original, servindo de inspiração e referência para este projeto.
 
 ## ✉️ Dúvidas ou sugestões:
 

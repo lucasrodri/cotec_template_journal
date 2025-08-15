@@ -48,6 +48,8 @@ pre {
   padding: 10px;
   overflow-x: auto;
   text-align: left;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 ul, ol {

@@ -255,21 +255,24 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 \newenvironment{revistaheaderenv}{%
 	\clearpage
 	\pagestyle{capavazia}
-	\newgeometry{left=15mm,right=0mm,top=0mm,bottom=0mm}%
+	\newgeometry{left=15mm,right=0mm,top=0mm,bottom=0mm,includefoot,footskip=24pt}%
 	\capa@ativatrue 
-	
 	\columnratio{0.70,0.30}% esquerda 72% / direita 28%
 	\begin{paracol}{2}%
 		\setlength{\columnsep}{0mm}%
 	}{%
 	\end{paracol}%
-	\restoregeometry
-	\pagestyle{fancy}%
-	\clearpage
-	\capa@ativafalse   
+	
+	\restoregeometry       % volta à geometria normal
+	\thispagestyle{fancy}  % garante rodapé nesta primeira página
+	\pagestyle{fancy}      % e nas seguintes
+	\clearpage             % começa a página do artigo
+	\capa@ativafalse       % desativa o overlay ANTES do shipout
 }
 
-
+\makeatletter
+\let\ps@plain\ps@fancy
+\makeatletter
 
 \newcommand{\revistaheader}{%
 	\begin{revistaheaderenv}
@@ -278,7 +281,7 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 		\switchcolumn*   % muda para a direita no mesmo nível vertical
 		\begin{tcolorbox}[enhanced,breakable,
 			frame hidden, interior hidden, % sem borda e sem fundo
-			%colback=headergray,colframe=headergray,
+			colback=headergray,colframe=headergray,
 			%boxrule=0pt,arc=0pt,
 			left=8pt,right=12pt,top=40pt,bottom=53pt]
 			\textbf{\MakeUppercase{\secaoNome}}\\[0.25em]
@@ -349,12 +352,17 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 			
 			\vspace{2em}
 			\begin{flushleft}\small 
-				\textbf{Como citar: } \renderComoCitarAutores~\textbf{\monog.}~\comoCitar
+				\textbf{Como citar: } \renderComoCitarAutores~\textbf{\monog.}~\comoCitar~DOI: \doiArtigo.
 			\end{flushleft}
 			
 		\end{tcolorbox}
 		
 	\end{revistaheaderenv}%
+	\restoregeometry       % volta à geometria normal
+	\thispagestyle{fancy}  % garante rodapé nesta primeira página
+	\pagestyle{fancy}      % e nas seguintes
+	\clearpage             % começa a página do artigo
+	\capa@ativafalse       % desativa o overlay ANTES do shipout
 }
 \newcommand{\ccfooter}{%
 	\vspace{0.7cm}%
@@ -545,8 +553,8 @@ pdfborder={0 0 0}  % remove a borda azul dos links
 %\setlength\parindent{0pt}
 
 \renewcommand{\footrulewidth}{0.5pt}
-\rfoot [\footnotesize{\editorial}]{\thepage}
-\lfoot [\thepage]{\footnotesize{\editorial}}
+\rfoot [\footnotesize{\editorial~DOI: \href{\doiArtigo}{\pidArtigo}}]{\thepage}
+\lfoot [\thepage]{\footnotesize{\editorial~DOI: \href{\doiArtigo}{\pidArtigo}}}
 
 %%\renewcommand{\footrulewidth}{0pt} % Remove linha do rodapé
 %\fancyhf{} % Limpa cabeçalhos e rodapés
