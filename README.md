@@ -1,7 +1,7 @@
 # Modelo LaTeX ABNT para Revistas Acadêmicas e Científicas
 
 Este repositório contém um **modelo LaTeX** desenvolvido para atender às normas da **ABNT** (NBR 6022, 6023, 10520, entre outras) aplicado ao contexto de revistas acadêmicas e científicas.  
-A iniciativa é parte de um esforço do **Instituto Brasileiro de Informação em Ciência e Tecnologia (IBICT)** para **incentivar e facilitar o uso de LaTeX** em periódicos da área de Ciência da Informação e áreas afins.
+A iniciativa é parte de um esforço do **Instituto Brasileiro de Informação em Ciência e Tecnologia (Ibict)** para **incentivar e facilitar o uso de LaTeX** em periódicos da área de Ciência da Informação e áreas afins.
 
 O modelo oferece uma base pronta para editores e autores produzirem artigos compatíveis com as exigências formais da ABNT, mantendo qualidade tipográfica profissional e automatizando tarefas repetitivas.
 
@@ -345,7 +345,7 @@ Este modelo é distribuído sob a licença Creative Commons Attribution (CC BY),
 
 ## 📣 Créditos
 
-Desenvolvido no âmbito do Instituto Brasileiro de Informação em Ciência e Tecnologia (IBICT), com inspiração e adaptações baseadas em modelos ABNT existentes, para apoiar editores, revisores e autores na produção de artigos científicos de alta qualidade tipográfica.
+Desenvolvido no âmbito do Instituto Brasileiro de Informação em Ciência e Tecnologia (Ibict), com inspiração e adaptações baseadas em modelos ABNT existentes, para apoiar editores, revisores e autores na produção de artigos científicos de alta qualidade tipográfica.
 
 Baseado no modelo de artigos LaTeX da revista Abakós (PUC Minas). Os créditos e agradecimentos vão para a equipe editorial da Abakós, que desenvolveu e compartilhou o template original, servindo de inspiração e referência para este projeto.
 
